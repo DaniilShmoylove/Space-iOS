@@ -12,43 +12,50 @@ import Kingfisher
 // MARK: - PlanetaryModel
 
 struct PlanetaryModel: Codable {
+    
+    init(
+        entity: PlanetaryEntity
+    ) {
+        self.copyright = entity.copyright
+        self.date = entity.date
+        self.explanation = entity.explanation
+        self.hdurl = entity.hdurl
+        self.mediaType = entity.mediaType
+        self.serviceVersion = entity.serviceVersion
+        self.title = entity.title
+        self.url = entity.url
+    }
+    
     let copyright, date, explanation: String?
     let hdurl: String?
     let mediaType, serviceVersion, title: String?
     let url: String?
     
-    var imageURL: URL? {
-        guard let url = hdurl else { return nil }
-        return URL(string: url)
-    }
+    let cellType: PlanetaryCellType = { PlanetaryCellType.allCases.randomElement()! }()
     
-    /* Cached image view */
-    
-//    lazy let imageView: UIImageView = {
-//        let imageView = UIImageView()
-//        guard let url = imageURL else { return UIImageView() }
-//        let resource = ImageResource(downloadURL: url, cacheKey: url.cacheKey)
-//        imageView.kf.indicatorType = .activity
-//        imageView.kf
-//            .setImage(
-//                with: resource,
-//                options: [
-//                    .loadDiskFileSynchronously,
-//                    .cacheOriginalImage,
-//                    .transition(.fade(0.35))
-//                ])
-//
-//        return imageView
-//    }()
-    
-    var info: String {
-        return (copyright?.count ?? 0 > 0 ? "\(copyright ?? ""), \(date ?? "")" : date ?? "")
-    }
-
     enum CodingKeys: String, CodingKey {
         case copyright, date, explanation, hdurl
         case mediaType = "media_type"
         case serviceVersion = "service_version"
         case title, url
+    }
+}
+
+extension PlanetaryModel {
+    var imageURL: URL? {
+        guard let url = hdurl else { return nil }
+        return URL(string: url)
+    }
+    
+    var copyrightWithDate: String {
+        return (copyright != nil  ? "\(copyright ?? ""), \(date ?? "")" : date ?? "")
+    }
+    
+    var copyrightWithPointDate: String {
+        return (copyright != nil  ? "\(copyright ?? "") · \(date ?? "")" : date ?? "")
+    }
+    
+    var titleWithDate: String {
+        return (title != nil ? "\(title ?? ""), \(date ?? "")" : date ?? "")
     }
 }
