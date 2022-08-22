@@ -13,9 +13,19 @@ extension Resolver: ResolverRegistering {
     
     public static func registerAllServices() {
         
-        //MARK: - DataService
+        //MARK: - ApiService
         
-//        register { DataService() }
-//            .implements(DataService.self)
+        register { ApiServiceImpl() }
+            .implements(ApiService.self)
+        
+        //MARK: - SpaceService
+        
+        register { NasaServiceImpl() }
+            .implements(SpaceService.self)
+        
+        //MARK: - NasaRepository
+        
+        register { NasaRepositoryImpl() }
+            .implements(NasaRepository.self)
     }
 }

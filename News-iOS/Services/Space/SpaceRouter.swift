@@ -8,12 +8,11 @@
 import Foundation
 import Alamofire
 
-enum NasaRouter {
+enum SpaceRouter {
     
     //MARK: - Router cases
     
-    case getFeedNewsData
-    case getSearchedData(for: String, count: String)
+    case getPlanetaryData(count: String)
     
     //MARK: - Base request URL
     
@@ -22,16 +21,14 @@ enum NasaRouter {
     //MARK: - Headers
     
     private var headers: HTTPHeaders { [
-//        "api_key": "9xA6BUT21OeWpnFtJBRm4kFyN5cthZjMmlzWyIpv"
+        "api_key": "9xA6BUT21OeWpnFtJBRm4kFyN5cthZjMmlzWyIpv"
     ] }
     
     //MARK: - Get path
     
     private var path: String {
         switch self {
-        case .getFeedNewsData:
-            return "path"
-        case .getSearchedData:
+        case .getPlanetaryData:
             return "/planetary/apod"
         }
     }
@@ -40,9 +37,7 @@ enum NasaRouter {
     
     private var method: HTTPMethod {
         switch self {
-        case .getFeedNewsData:
-            return .get
-        case .getSearchedData:
+        case .getPlanetaryData:
             return .get
         }
     }
@@ -51,33 +46,24 @@ enum NasaRouter {
     
     private var parameters: Parameters {
         switch self {
-        case .getFeedNewsData:
-            return [:]
-        case let .getSearchedData(for: request, count: count):
-//            return [
-//                "q": request,
-//                "description": "moon%20landing",
-//                "media_type": "image"
-//            ]
+        case let .getPlanetaryData(count: count):
             return [
                 "count": count,
                 "api_key": "9xA6BUT21OeWpnFtJBRm4kFyN5cthZjMmlzWyIpv"
             ]
-//            return [:]
         }
     }
 }
 
 // MARK: - URLRequestConvertible
-extension NasaRouter: URLRequestConvertible {
+
+extension SpaceRouter: URLRequestConvertible {
     internal func asURLRequest() throws -> URLRequest {
         let url = self.baseURL.appendingPathComponent(self.path)
         var request = URLRequest(url: url)
         request.method = self.method
         request.headers = self.headers
         request = try URLEncodedFormParameterEncoder(destination: .methodDependent).encode(self.parameters as? [String: String], into: request)
-        print(request)
-        print("###CREATE REQUEST")
         return request
     }
 }
