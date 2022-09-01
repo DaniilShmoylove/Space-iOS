@@ -34,11 +34,11 @@ class DetailPageBarTableViewCell: UITableViewCell {
         self.detailPageBarLabel.translatesAutoresizingMaskIntoConstraints = false
         self.detailPageBarLabel
             .leadingAnchor
-            .constraint(equalTo: self.leadingAnchor, constant: AppConstants.UI.summaryHorizontal)
+            .constraint(equalTo: self.leadingAnchor, constant: AppConstants.UI.padding)
             .isActive = true
         self.detailPageBarLabel
             .trailingAnchor
-            .constraint(equalTo: self.trailingAnchor, constant: -AppConstants.UI.summaryHorizontal)
+            .constraint(equalTo: self.trailingAnchor, constant: -AppConstants.UI.padding)
             .isActive = true
         self.detailPageBarLabel
             .topAnchor

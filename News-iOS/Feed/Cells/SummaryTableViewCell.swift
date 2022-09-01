@@ -38,11 +38,11 @@ class SummaryTableViewCell: UITableViewCell {
         self.summaryView.translatesAutoresizingMaskIntoConstraints = false
         self.summaryView
             .leadingAnchor
-            .constraint(equalTo: self.leadingAnchor, constant: AppConstants.UI.summaryHorizontal)
+            .constraint(equalTo: self.leadingAnchor, constant: AppConstants.UI.padding)
             .isActive = true
         self.summaryView
             .trailingAnchor
-            .constraint(equalTo: self.trailingAnchor, constant: -AppConstants.UI.summaryHorizontal)
+            .constraint(equalTo: self.trailingAnchor, constant: -AppConstants.UI.padding)
             .isActive = true
         self.summaryView
             .topAnchor

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ExploreTableViewCell: UITableViewCell {
     
@@ -15,7 +16,7 @@ class ExploreTableViewCell: UITableViewCell {
     
     //MARK: - Explore data
     
-    private var exploreData = [ExploreModel]()
+    private var exploreData = [PlanetaryModel]()
     
     //MARK: - Explore collection view
     
@@ -41,7 +42,6 @@ class ExploreTableViewCell: UITableViewCell {
             collectionViewLayout: layout
         )
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.contentView.backgroundColor = .systemRed
         self.configureExploreCollectionView()
     }
     
@@ -52,33 +52,43 @@ class ExploreTableViewCell: UITableViewCell {
     //MARK: - Configure explore collection view
     
     private func configureExploreCollectionView() {
-        
-        //MARK: - Cell background
-        
-        self.exploreCollectionView.backgroundColor = UIColor(named: "listBackground")
+        self.exploreCollectionView.backgroundColor = .systemGray6
         self.exploreCollectionView.showsHorizontalScrollIndicator = false
         self.exploreCollectionView.showsVerticalScrollIndicator = false
         self.exploreCollectionView.register(ExploreCollectionViewCell.self, forCellWithReuseIdentifier: ExploreCollectionViewCell.id)
         self.exploreCollectionView.delegate = self
         self.exploreCollectionView.dataSource = self
         self.contentView.addSubview(self.exploreCollectionView)
+        self.exploreCollectionView.frame = self.frame
+        
+        self.exploreCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        self.exploreCollectionView
+            .leadingAnchor
+            .constraint(equalTo: self.leadingAnchor)
+            .isActive = true
+        self.exploreCollectionView
+            .trailingAnchor
+            .constraint(equalTo: self.trailingAnchor)
+            .isActive = true
+        self.exploreCollectionView
+            .topAnchor
+            .constraint(equalTo: self.topAnchor)
+            .isActive = true
+        self.exploreCollectionView
+            .bottomAnchor
+            .constraint(equalTo: self.bottomAnchor)
+            .isActive = true
     }
     
-    func configure(with model: [ExploreModel]) {
+    func configure(with model: [PlanetaryModel]) {
         self.exploreData = model
-        print(self.exploreData.count)
         self.exploreCollectionView.reloadData()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.exploreCollectionView.frame = self.contentView.bounds
     }
 }
 
 extension ExploreTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     
-    //MARK: - Number of sections
+    //    //MARK: - Number of sections
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -116,7 +126,7 @@ extension ExploreTableViewCell: UICollectionViewDataSource, UICollectionViewDele
     }
 }
 
-//extension ExploreTableViewCell: UICollectionViewDelegateFlowLayout { }
+extension ExploreTableViewCell: UICollectionViewDelegateFlowLayout { }
 
 class ExploreCollectionViewCell: UICollectionViewCell {
     
@@ -126,9 +136,18 @@ class ExploreCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Configure
     
-    public func configure(with model: ExploreModel) {
-        self.exploreView.setTitle(model.name, for: .normal)
-//        self.exploreView.text = model.name
+    public func configure(with model: PlanetaryModel) {
+        self.exploreView.setTitle(model.title, for: .normal)
+        if let url = model.imageURL {
+            let resource = ImageResource(downloadURL: url, cacheKey: url.cacheKey)
+            self.exploreView.imageView?.kf.indicatorType = .activity
+            self.exploreView.imageView?.kf
+                .setImage(
+                    with: resource,
+                    options: [
+                        .transition(.fade(AppConstants.Core.standartDuration))
+                    ])
+        }
     }
     
     //MARK: - ExploreView
@@ -150,7 +169,7 @@ class ExploreCollectionViewCell: UICollectionViewCell {
     @objc private func exploreAction() {
         print("Hello")
     }
-        
+    
     //MARK: Init
     
     override init(frame: CGRect) {
