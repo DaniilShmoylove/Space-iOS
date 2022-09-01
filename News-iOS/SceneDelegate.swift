@@ -6,25 +6,58 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
 
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+    func scene(
+        _ scene: UIScene,
+        willConnectTo session: UISceneSession,
+        options connectionOptions: UIScene.ConnectionOptions
+    ) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         self.window?.windowScene = windowScene
+        if let _ = Auth.auth().currentUser {
+            
+            //MARK: - FeedViewController
+            
+            let feedViewController = FeedViewController()
+            feedViewController.title = "Your feed"
+            let feedNavigationController = UINavigationController(rootViewController: feedViewController)
+            feedNavigationController.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
+            feedNavigationController.tabBarItem.image = UIImage(systemName: "house")
+            
+            //MARK: - SavedDataViewController
+            
+            let savedDataViewController = SavedDataViewController()
+            savedDataViewController.title = "Favorite"
+            let savedDataNavigationController = UINavigationController(rootViewController: savedDataViewController)
+            savedDataNavigationController.tabBarItem.image = UIImage(systemName: "diamond")
+            savedDataNavigationController.tabBarItem.selectedImage = UIImage(systemName: "diamond.fill")
+            
+            //MARK: -
+            
+            let otherVC = UIViewController()
+            otherVC.title = "Options"
+            let navVC = UINavigationController(rootViewController: otherVC)
+            navVC.tabBarItem.image = UIImage(systemName: "person")
+            navVC.tabBarItem.selectedImage = UIImage(systemName: "person.fill")
+            
+            //MARK: - UITabBarController
+            
+            let tabBarController = UITabBarController()
+            tabBarController.setViewControllers([feedNavigationController, savedDataNavigationController, navVC], animated: false)
+            self.window?.rootViewController = tabBarController
+        } else {
+            let viewController = AuthenticationViewController()
+            let navigationController = UINavigationController(rootViewController: viewController)
+            self.window?.rootViewController = navigationController
+        }
         self.window?.makeKeyAndVisible()
-        let viewController = FeedViewController()
-        let navigationController = UINavigationController(rootViewController: viewController)
-//        let tabBarController = UITabBarController()
-//        tabBarController.setViewControllers([navigationController], animated: true)
-        self.window?.rootViewController = navigationController
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -57,7 +90,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Save changes in the application's managed object context when the application transitions to the background.
         AppDelegate.saveContext()
     }
-
-
 }
 
+//MARK: - Change root vc
+
+extension SceneDelegate {
+    func openRecipientsController() {
+        let viewController = FeedViewController()
+        let navigationController = UINavigationController(rootViewController: viewController)
+        guard let window = self.window else { return }
+        window.rootViewController = navigationController
+        UIView.transition(
+            with: window,
+            duration: AppConstants.Core.standartDuration,
+            options: .transitionCrossDissolve,
+            animations: nil,
+            completion: nil
+        )
+    }
+}
