@@ -8,14 +8,23 @@
 import UIKit
 import CoreData
 import Kingfisher
+import FirebaseCore
+import GoogleSignIn
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
+    ) -> Bool {
         // Override point for customization after application launch.
+        
+        //MARK: - Configure Firebase 
+        
+        FirebaseApp.configure()
         
         //MARK: - Configure image cache
         
@@ -23,7 +32,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         cache.diskStorage.config.sizeLimit = AppConstants.Core.cacheSize
         
         UIView.appearance().tintColor = .label
+        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 36, weight: .black)]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .black)]
         return true
+    }
+    
+    @available(iOS 9.0, *)
+    func application(
+        _ application: UIApplication, open url: URL,
+        options: [UIApplication.OpenURLOptionsKey: Any]
+    ) -> Bool {
+        
+        //MARK: - Google signin configure
+        
+        return GIDSignIn.sharedInstance.handle(url)
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
@@ -32,7 +54,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: UISceneSession Lifecycle
     
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+    func application(
+        _ application: UIApplication,
+        configurationForConnecting connectingSceneSession: UISceneSession,
+        options: UIScene.ConnectionOptions
+    ) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
@@ -55,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          application to it. This property is optional since there are legitimate
          error conditions that could cause the creation of the store to fail.
          */
-        let container = NSPersistentContainer(name: "NewsiOS")
+        let container = NSPersistentContainer(name: "SpaceiOS")
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.

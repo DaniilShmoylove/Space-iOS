@@ -23,9 +23,14 @@ extension Resolver: ResolverRegistering {
         register { NasaServiceImpl() }
             .implements(SpaceService.self)
         
-        //MARK: - NasaRepository
+        //MARK: - SpaceRepository
         
-        register { NasaRepositoryImpl() }
-            .implements(NasaRepository.self)
+        register { SpaceRepositoryImpl() }
+            .implements(SpaceRepository.self)
+        
+        //MARK: - AuthenticationService
+        
+        register { AuthenticationServiceImpl() }
+            .implements(AuthenticationService.self)
     }
 }
