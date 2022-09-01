@@ -15,14 +15,17 @@ enum AppConstants {
         
         /* Application layout & constants */
         
-        static let horizontal: CGFloat = 18
+        static let horizontal: CGFloat = 28
         static let vertical: CGFloat = 16
-        static let cellVertical: CGFloat = 4
-        static let summaryHorizontal: CGFloat = 28
-        static let headerHeight: CGFloat = 64
-        static let exploreHeight: CGFloat = 96
+        static let verticalDefault: CGFloat = 6
+        static let cellVertical: CGFloat = 10
+        static let padding: CGFloat = 16
+        static let lowPadding: CGFloat = 12
+        static let headerHeight: CGFloat = 42
+        static let exploreHeight: CGFloat = 72
         static let materialButton: CGRect = CGRect(x: 0, y: 0, width: 36, height: 36)
-        static let cornerRadius: CGFloat = 24
+        static let cornerRadius: CGFloat = 16
+        static let sheetCornerRadius: CGFloat = 24
     }
     
     //MARK: - Core
@@ -36,6 +39,10 @@ enum AppConstants {
         /* 0.45 sec standart duration */
         
         static let standartDuration: CGFloat = 0.45
+    }
+    
+    enum API {
+        static let feedCount: String = "10"
     }
 }
 
