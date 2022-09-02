@@ -19,15 +19,15 @@ protocol SpaceService {
 final class NasaServiceImpl: SpaceService {
     init() { }
     
-    //MARK: - NasaRepository
+    //MARK: - SpaceRepository
     
-    @Injected private var nasaRepository: NasaRepository
+    @Injected private var spaceRepository: SpaceRepository
     
     //MARK: - Fetch planetary data
     
     @MainActor
     func fetchPlanetaryData() async throws -> [PlanetaryModel]? {
-        let data = try await self.nasaRepository.fetchPlanetaryData()
+        let data = try await self.spaceRepository.fetchPlanetaryData()
         return data
     }
 }

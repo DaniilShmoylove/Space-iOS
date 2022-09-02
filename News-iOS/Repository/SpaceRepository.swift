@@ -8,15 +8,15 @@
 import Foundation
 import Resolver
 
-//MARK: - NasaRepository protocol
+//MARK: - SpaceRepository protocol
 
-protocol NasaRepository {
+protocol SpaceRepository {
     func fetchPlanetaryData() async throws -> [PlanetaryModel]
 }
 
 //MARK: - NasaRepository
 
-final class NasaRepositoryImpl: NasaRepository {
+final class SpaceRepositoryImpl: SpaceRepository {
     init() { decoder = JSONDecoder() }
     
     //MARK: - ApiService
