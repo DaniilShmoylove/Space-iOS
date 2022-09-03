@@ -1,30 +1,37 @@
 //
-//  NasaRouter.swift
+//  SpaceRouter.swift
 //  News-iOS
 //
 //  Created by Daniil Shmoylove on 15.08.2022.
 //
 
-import Foundation
 import UIKit
 
-protocol FeedRouterLogic: AnyObject {
-    func navigationToDetailPage(data: PlanetaryModel)
+//MARK: - FeedRouter protocol
+
+protocol FeedRouterLogic {
+    func routeToDetailPage(data: PlanetaryModel)
 }
+
+//MARK: - FeedRouter class
 
 final class FeedRouter {
     weak var viewController: UIViewController?
 }
 
+//MARK: - FeedRouter logic
+
 extension FeedRouter: FeedRouterLogic {
-    func navigationToDetailPage(data: PlanetaryModel) {
-        print("### - \(data)")
+    
+    //MARK: - Routing
+    
+    /* Route to detail page vc */
+    
+    func routeToDetailPage(data: PlanetaryModel) {
         let destination = DetailPageViewController()
-        destination.router?.store?.data = data
+        destination.router?.dataStore?.data = data
         self.viewController?
             .navigationController?
             .pushViewController(destination, animated: true)
     }
-    
-    
 }

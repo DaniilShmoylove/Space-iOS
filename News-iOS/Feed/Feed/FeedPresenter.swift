@@ -7,15 +7,19 @@
 
 import Foundation
 
+//MARK: - FeedPresenter protocol
+
 protocol FeedPresenterLogic: AnyObject {
     func present(data: [FeedCellModel])
 }
 
+//MARK: - FeedPresenter class
+
 final class FeedPresenter {
-    weak var viewController: FeedViewControllerLogic?
+    weak var viewController: FeedDisplayLogic?
 }
 
-//MARK: - Presenter logic
+//MARK: - FeedPresenter logic
 
 extension FeedPresenter: FeedPresenterLogic {
     func present(data: [FeedCellModel]) {
