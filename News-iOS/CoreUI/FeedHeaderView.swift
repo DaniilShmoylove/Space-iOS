@@ -13,15 +13,9 @@ final class FeedHeaderView: UIView {
     
     private let title = UILabel()
     
-    //MARK: - Header action
-    
-    let headerAction = UIButton()
-    
     //MARK: - init
     
-    override init(
-        frame: CGRect
-    ) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
     }
     
@@ -33,7 +27,6 @@ final class FeedHeaderView: UIView {
     
     func configure(
         title: String,
-        topPadding: CGFloat = .zero,
         isShowingHeaderAction: Bool = false
     ) {
         
@@ -43,27 +36,30 @@ final class FeedHeaderView: UIView {
         self.title.font = .systemFont(ofSize: 22, weight: .black)
         self.title.textAlignment = .left
         
-        //MARK: - Header action
-        
-        if isShowingHeaderAction {
-            self.headerAction.setTitle("See more", for: .normal)
-            self.headerAction.titleLabel?.font = .systemFont(ofSize: 12)
-            self.headerAction.setTitleColor(.systemGray, for: .normal)
-        }
         
         //MARK: - StackView
         
-        let stackView = UIStackView(arrangedSubviews: [self.title, self.headerAction])
-        self.addSubview(stackView)
-        stackView.alignment = .firstBaseline
-        stackView.axis = .horizontal
- 
-        stackView.frame = CGRect(
-            x: AppConstants.UI.summaryHorizontal,
-            y: topPadding,
-            width: UIScreen.main.bounds.width - AppConstants.UI.summaryHorizontal * 2,
-            height: 32
-        )
-        
+        self.addSubview(self.title)
+        self.title.translatesAutoresizingMaskIntoConstraints = false
+        self.title
+            .topAnchor
+            .constraint(equalTo: self.topAnchor)
+            .isActive = true
+        self.title
+            .bottomAnchor
+            .constraint(equalTo: self.bottomAnchor)
+            .isActive = true
+        self.title
+            .leadingAnchor
+            .constraint(equalTo: self.leadingAnchor, constant: AppConstants.UI.padding)
+            .isActive = true
+        self.title
+            .trailingAnchor
+            .constraint(equalTo: self.trailingAnchor, constant: -AppConstants.UI.padding)
+            .isActive = true
+        self.title
+            .heightAnchor
+            .constraint(equalToConstant: AppConstants.UI.headerHeight)
+            .isActive = true
     }
 }

@@ -75,6 +75,7 @@ final class PlanetaryEntity: NSManagedObject {
     
     /* checks for the presence of an element in the collection */
     
+    @discardableResult
     class func checkDuplicate(
         for planetaryModel: PlanetaryModel,
         _ context: NSManagedObjectContext
@@ -99,4 +100,3 @@ final class PlanetaryEntity: NSManagedObject {
         }
     }
 }
-

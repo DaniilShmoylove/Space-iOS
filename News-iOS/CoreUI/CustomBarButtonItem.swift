@@ -13,8 +13,8 @@ extension UIBarButtonItem {
     
     static func createBarButtonItem(
         iconString: String,
-        target: Any?,
-        action: Selector?
+        target: Any? = nil,
+        action: Selector? = nil 
     ) -> UIBarButtonItem {
         let configuration = UIButton.Configuration.navigationBarMaterial()
         let button = UIButton(configuration: configuration)

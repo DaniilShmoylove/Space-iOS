@@ -50,6 +50,12 @@ class ParallaxHeaderView: UIView {
         self.addSubview(self.containerView)
         self.containerView.addSubview(imageView)
         self.addSubview(titleLabelView)
+        self.frame = CGRect(
+            x: .zero,
+            y: .zero,
+            width: UIScreen.main.bounds.width,
+            height:  UIScreen.main.bounds.width + 128
+        )
     }
     
     private func setConstraints() {
@@ -76,11 +82,11 @@ class ParallaxHeaderView: UIView {
         self.titleLabelView.translatesAutoresizingMaskIntoConstraints = false
         self.titleLabelView
             .leadingAnchor
-            .constraint(equalTo: self.leadingAnchor, constant: AppConstants.UI.summaryHorizontal)
+            .constraint(equalTo: self.leadingAnchor, constant: AppConstants.UI.padding)
             .isActive = true
         self.titleLabelView
             .trailingAnchor
-            .constraint(equalTo: self.trailingAnchor, constant: -AppConstants.UI.summaryHorizontal)
+            .constraint(equalTo: self.trailingAnchor, constant: -AppConstants.UI.padding)
             .isActive = true
         self.titleLabelView
             .bottomAnchor
