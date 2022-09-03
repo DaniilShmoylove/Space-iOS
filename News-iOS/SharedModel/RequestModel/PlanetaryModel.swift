@@ -42,8 +42,13 @@ struct PlanetaryModel: Codable {
 }
 
 extension PlanetaryModel {
-    var imageURL: URL? {
+    var imageHDURL: URL? {
         guard let url = hdurl else { return nil }
+        return URL(string: url)
+    }
+    
+    var imageURL: URL? {
+        guard let url = url else { return nil }
         return URL(string: url)
     }
     
@@ -53,9 +58,5 @@ extension PlanetaryModel {
     
     var copyrightWithPointDate: String {
         return (copyright != nil  ? "\(copyright ?? "") · \(date ?? "")" : date ?? "")
-    }
-    
-    var titleWithDate: String {
-        return (title != nil ? "\(title ?? ""), \(date ?? "")" : date ?? "")
     }
 }

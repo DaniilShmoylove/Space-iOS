@@ -22,9 +22,12 @@ final class PlanetaryEntity: NSManagedObject {
     ) throws -> PlanetaryEntity {
         let request: NSFetchRequest<PlanetaryEntity> = PlanetaryEntity.fetchRequest()
         
-        /* Filter by id */
-        
-        request.predicate = NSPredicate(format: "url == %@", planetaryModel.url!)
+        if let predicate = planetaryModel.url {
+            
+            /* Filter by id */
+         
+            request.predicate = NSPredicate(format: "url == %@", predicate)
+        }
         
         /* Check duplicate */
         
@@ -63,6 +66,34 @@ final class PlanetaryEntity: NSManagedObject {
         
         do {
             return try context.fetch(request)
+        } catch {
+            throw error
+        }
+    }
+    
+    //MARK: - Is added
+    
+    /* checks for the presence of an element in the collection */
+    
+    class func checkDuplicate(
+        for planetaryModel: PlanetaryModel,
+        _ context: NSManagedObjectContext
+    ) throws -> Bool {
+        let request: NSFetchRequest<PlanetaryEntity> = PlanetaryEntity.fetchRequest()
+        
+        if let predicate = planetaryModel.url {
+            
+            /* Filter by id */
+         
+            request.predicate = NSPredicate(format: "url == %@", predicate)
+        }
+        
+        /* Check duplicate */
+        
+        do {
+            let fetchResult = try context.fetch(request)
+            guard fetchResult.count > 0 else { return false }
+            return true
         } catch {
             throw error
         }

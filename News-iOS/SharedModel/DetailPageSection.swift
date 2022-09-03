@@ -9,13 +9,13 @@ import UIKit
 
 //MARK: - Detail page item
 
-struct DetailPageItem {
+struct TableViewItem {
     var createdCell: () -> UITableViewCell
 }
 
 //MARK: - Detail page section
 
-enum DetailPageSection {
-    case overview(_ items: [DetailPageItem])
-    case pagefeed(header: String, _ items: [PlanetaryModel])
+enum TableViewSection {
+    case overview(_ items: [TableViewItem])
+    case pagefeed(_ items: [PlanetaryModel])
 }
