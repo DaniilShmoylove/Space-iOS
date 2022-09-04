@@ -1,5 +1,5 @@
 //
-//  PlanetaryMediumTableViewCell.swift
+//  PlanetaryDefaultTableViewCell.swift
 //  News-iOS
 //
 //  Created by Daniil Shmoylove on 28.07.2022.
@@ -8,11 +8,11 @@
 import UIKit
 import Kingfisher
 
-class PlanetaryMediumTableViewCell: UITableViewCell {
+class PlanetaryDefaultTableViewCell: UITableViewCell {
     
     //MARK: - Cell identifier
     
-    static let id: String   = "PlanetaryMediumTableViewCell.cell"
+    static let id: String   = "PlanetaryDefaultTableViewCell.cell"
     
     //MARK: - Views
     
@@ -35,7 +35,7 @@ class PlanetaryMediumTableViewCell: UITableViewCell {
     }
 }
 
-extension PlanetaryMediumTableViewCell: PlanetaryTableViewCell {
+extension PlanetaryDefaultTableViewCell: PlanetaryTableViewCell {
     func configure(with data: PlanetaryModel) {
         self.title.text = data.copyrightWithPointDate
         self.subtitle.text = data.explanation
@@ -55,7 +55,7 @@ extension PlanetaryMediumTableViewCell: PlanetaryTableViewCell {
     }
 }
 
-extension PlanetaryMediumTableViewCell {
+extension PlanetaryDefaultTableViewCell {
     private func configureCellView() {
         
         //MARK: - Info View

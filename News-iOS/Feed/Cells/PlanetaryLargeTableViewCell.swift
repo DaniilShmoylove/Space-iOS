@@ -8,32 +8,13 @@
 import UIKit
 import Kingfisher
 
-//MARK: - Planetary large cell delegate
-
-protocol PlanetaryLargeCellDelegate: AnyObject {
-    func favButtonDidTap()
-}
-
 final class PlanetaryLargeTableViewCell: UITableViewCell {
     
     //MARK: - Identifier
     
     static let id: String   = "PlanetaryLargeTableViewCell.cell"
     
-    //MARK: - Delegate
-    
-    weak var delegate: PlanetaryLargeCellDelegate?
-    
     //MARK: - Views
-    
-    private lazy var favButton: UIButton = {
-        let configuration = UIButton.Configuration.navigationBarMaterial()
-        let button = UIButton(configuration: configuration)
-        button.frame = AppConstants.UI.materialButton
-        button.addTarget(self, action: #selector(self.favButtonAction), for: .touchUpInside)
-        button.setImage(UIImage(systemName: "plus"), for: .normal)
-        return button
-    }()
     
     private let title       = UILabel()
     private let explanation = UILabel()
@@ -47,7 +28,7 @@ final class PlanetaryLargeTableViewCell: UITableViewCell {
         reuseIdentifier: String?
     ) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.contentView.isUserInteractionEnabled = true 
+        self.contentView.isUserInteractionEnabled = true
         self.configureCellView()
     }
     
@@ -59,6 +40,39 @@ final class PlanetaryLargeTableViewCell: UITableViewCell {
 //MARK: - Configure cell view
 
 extension PlanetaryLargeTableViewCell: PlanetaryTableViewCell {
+    
+    //MARK: - Configuration cell view
+    
+    func configure(with data: PlanetaryModel) {
+        self.title.text = data.explanation
+        self.explanation.text = data.copyrightWithPointDate
+        
+        /* Saved image */
+        
+        guard data.image == nil else {
+            if let image = data.image {
+                self.sourceImage.image = UIImage(data: image)
+            }
+            return
+        }
+        
+        /* Download image */
+        
+        if let url = data.imageURL {
+            let resource = ImageResource(downloadURL: url, cacheKey: url.cacheKey)
+            self.sourceImage.kf.indicatorType = .activity
+            self.sourceImage.kf
+                .setImage(
+                    with: resource,
+                    options: [
+                        .fromMemoryCacheOrRefresh,
+                        .transition(.fade(AppConstants.Core.standartDuration))
+                    ])
+        }
+    }
+    
+    /* Configure */
+    
     private func configureCellView() {
         
         //MARK: - Title label
@@ -79,25 +93,6 @@ extension PlanetaryLargeTableViewCell: PlanetaryTableViewCell {
         let imageConfiguration = UIImage.SymbolConfiguration(pointSize: 16, weight: .bold)
         self.optionButton.setImage(UIImage(systemName: "ellipsis", withConfiguration: imageConfiguration), for: .normal)
         self.optionButton.imageView?.tintColor = .systemGray
-        
-        self.sourceImage.addSubview(self.favButton)
-        self.favButton.translatesAutoresizingMaskIntoConstraints = false
-        self.favButton
-            .leadingAnchor
-            .constraint(equalTo: self.sourceImage.leadingAnchor, constant: AppConstants.UI.lowPadding)
-            .isActive = true
-        self.favButton
-            .bottomAnchor
-            .constraint(equalTo: self.sourceImage.bottomAnchor, constant: -AppConstants.UI.lowPadding)
-            .isActive = true
-        self.favButton
-            .heightAnchor
-            .constraint(equalToConstant: 36)
-            .isActive = true
-        self.favButton
-            .widthAnchor
-            .constraint(equalTo: self.favButton.heightAnchor)
-            .isActive = true
         
         //MARK: - Source image label
         
@@ -150,33 +145,5 @@ extension PlanetaryLargeTableViewCell: PlanetaryTableViewCell {
             .bottomAnchor
             .constraint(equalTo: self.bottomAnchor, constant: -AppConstants.UI.lowPadding)
             .isActive = true
-    }
-    
-    //MARK: - Configuration cell view
-    
-    func configure(with data: PlanetaryModel) {
-        self.title.text = data.explanation
-        self.explanation.text = data.copyrightWithPointDate
-        
-        /* Download image */
-        
-        if let url = data.imageURL {
-            let resource = ImageResource(downloadURL: url, cacheKey: url.cacheKey)
-            self.sourceImage.kf.indicatorType = .activity
-            self.sourceImage.kf
-                .setImage(
-                    with: resource,
-                    options: [
-                        .transition(.fade(AppConstants.Core.standartDuration))
-                    ])
-        }
-    }
-}
-
-//MARK: - Delegate action
-
-extension PlanetaryLargeTableViewCell {
-    @objc private func favButtonAction() {
-        self.delegate?.favButtonDidTap()
     }
 }

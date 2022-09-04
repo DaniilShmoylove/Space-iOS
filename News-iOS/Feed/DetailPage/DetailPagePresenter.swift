@@ -11,6 +11,7 @@ import Foundation
 
 protocol DetailPagePresenterLogic {
     func present(data: PlanetaryModel)
+    func presentFeed(data: [PlanetaryModel])
 }
 
 //MARK: - DetailPage presenter class
@@ -24,5 +25,9 @@ final class DetailPagePresenter {
 extension DetailPagePresenter: DetailPagePresenterLogic {
     func present(data: PlanetaryModel) {
         self.viewController?.display(data: data)
+    }
+    
+    func presentFeed(data: [PlanetaryModel]) {
+        self.viewController?.displayFeed(data: data)
     }
 }

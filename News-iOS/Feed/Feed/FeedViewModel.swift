@@ -127,18 +127,23 @@ extension FeedViewModel: UITableViewDelegate {
                 /* Delete */
                 
             case true:
-                let deleteAction = UIContextualAction(style: .normal, title: nil) { action, view, completion in
-                    self.dataService.deleteAll()
+                let deleteAction = UIContextualAction(
+                    style: .destructive,
+                    title: nil
+                ) { (action, view, completion) in
+                    self.dataService.deleteItem(for: data[indexPath.row])
                     completion(true)
                 }
                 deleteAction.image = UIImage(systemName: "trash")
-                deleteAction.backgroundColor = .systemRed
                 return UISwipeActionsConfiguration(actions: [deleteAction])
                 
                 /* Save */
                 
             case false:
-                let saveAction = UIContextualAction(style: .normal, title: nil) { action, view, completion in
+                let saveAction = UIContextualAction(
+                    style: .normal,
+                    title: nil
+                ) { action, view, completion in
                     self.dataService.saveData(for: data[indexPath.row])
                     completion(true)
                 }
