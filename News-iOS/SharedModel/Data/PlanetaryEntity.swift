@@ -53,6 +53,7 @@ final class PlanetaryEntity: NSManagedObject {
         planetaryEntity.serviceVersion = planetaryModel.serviceVersion
         planetaryEntity.title = planetaryModel.title
         planetaryEntity.url = planetaryModel.url
+        planetaryEntity.image = planetaryModel.image
         
         return planetaryEntity
     }

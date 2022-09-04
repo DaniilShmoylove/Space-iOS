@@ -24,12 +24,14 @@ struct PlanetaryModel: Codable {
         self.serviceVersion = entity.serviceVersion
         self.title = entity.title
         self.url = entity.url
+        self.image = entity.image
     }
     
     let copyright, date, explanation: String?
     let hdurl: String?
     let mediaType, serviceVersion, title: String?
     let url: String?
+    let image: Data?
     
     let cellType: PlanetaryCellType = { PlanetaryCellType.allCases.randomElement()! }()
     
@@ -38,6 +40,7 @@ struct PlanetaryModel: Codable {
         case mediaType = "media_type"
         case serviceVersion = "service_version"
         case title, url
+        case image 
     }
 }
 
