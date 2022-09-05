@@ -135,7 +135,7 @@ extension SavedDataViewModel: UITableViewDelegate {
                     self.delegate?.deleteItemDidSwipe(at: indexPath)
                     completion(true)
                 }
-                deleteAction.image = UIImage(systemName: "trash")
+                deleteAction.image = .Icons.delete
                 deleteAction.backgroundColor = .systemRed
                 return UISwipeActionsConfiguration(actions: [deleteAction])
                 
@@ -146,7 +146,7 @@ extension SavedDataViewModel: UITableViewDelegate {
                     self.dataService.saveData(for: data[indexPath.row])
                     completion(true)
                 }
-                saveAction.image = UIImage(systemName: "square.and.arrow.down.on.square.fill")
+                saveAction.image = .Icons.add
                 saveAction.backgroundColor = .systemBlue
                 return UISwipeActionsConfiguration(actions: [saveAction])
             }

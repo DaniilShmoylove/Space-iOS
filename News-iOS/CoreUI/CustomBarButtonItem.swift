@@ -12,7 +12,7 @@ extension UIBarButtonItem {
     /* Create Navigation button view */
     
     static func createBarButtonItem(
-        iconString: String,
+        image: UIImage,
         target: Any? = nil,
         action: Selector? = nil 
     ) -> UIBarButtonItem {
@@ -20,7 +20,7 @@ extension UIBarButtonItem {
         let button = UIButton(configuration: configuration)
         button.frame = AppConstants.UI.materialButton
         if let action = action { button.addTarget(target, action: action, for: .touchUpInside) }
-        button.setImage(UIImage(systemName: iconString), for: .normal)
+        button.setImage(image, for: .normal)
         return UIBarButtonItem(customView: button)
     }
 }

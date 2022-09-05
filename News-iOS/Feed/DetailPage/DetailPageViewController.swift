@@ -172,13 +172,17 @@ extension DetailPageViewController {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         self.navigationItem.setLeftBarButton(
             .createBarButtonItem(
-                iconString: "xmark",
+                image: .Icons.xmark,
                 target: self,
                 action: #selector(self.backAction)),
             animated: true)
         self.navigationItem.setRightBarButtonItems([
-            .createBarButtonItem(iconString: "textformat.size"),
-            .createBarButtonItem(iconString: "plus")
+            .createBarButtonItem(image: .Icons.format),
+            .createBarButtonItem(
+                image: .Icons.add,
+                target: self,
+                action: #selector(self.saveData)
+            )
         ], animated: true)
     }
     
@@ -196,6 +200,10 @@ extension DetailPageViewController {
     //MARK: - NavigationBarButtons action
     
     @objc private func backAction() { self.navigationController?.popViewController(animated: true) }
+    
+    @objc private func saveData() {
+        self.interactor?.saveData()
+    }
 }
 
 //MARK: - Display

@@ -134,7 +134,7 @@ extension FeedViewModel: UITableViewDelegate {
                     self.dataService.deleteItem(for: data[indexPath.row])
                     completion(true)
                 }
-                deleteAction.image = UIImage(systemName: "trash")
+                deleteAction.image = .Icons.delete
                 return UISwipeActionsConfiguration(actions: [deleteAction])
                 
                 /* Save */
@@ -147,7 +147,7 @@ extension FeedViewModel: UITableViewDelegate {
                     self.dataService.saveData(for: data[indexPath.row])
                     completion(true)
                 }
-                saveAction.image = UIImage(systemName: "square.and.arrow.down.on.square.fill")
+                saveAction.image = .Icons.add
                 saveAction.backgroundColor = .systemBlue
                 return UISwipeActionsConfiguration(actions: [saveAction])
             }
