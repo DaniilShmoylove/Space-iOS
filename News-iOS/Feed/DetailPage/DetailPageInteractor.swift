@@ -12,6 +12,7 @@ import Resolver
 protocol DetailPageInteractorLogic {
     func fetchData()
     func fetchFeedData()
+    func saveData()
 }
 
 //MARK: - DetailPage interactor class
@@ -26,6 +27,10 @@ final class DetailPageInteractor: DetailPageData {
     //MARK: - Nasa data service
     
     @Injected private var spaceService: SpaceService
+    
+    //MARK: - Data service
+    
+    private var dataService = DataService.shared
 }
 
 //MARK: - DetailPage interactor logic
@@ -49,5 +54,14 @@ extension DetailPageInteractor: DetailPageInteractorLogic {
     func fetchData() {
         guard let data = data else { return }
         self.presenter?.present(data: data)
+    }
+    
+    //MARK: - Save current data
+    
+    @MainActor
+    func saveData() {
+        guard let data = data else { return }
+        HapticService.impact(style: .rigid)
+        self.dataService.saveData(for: data)
     }
 }

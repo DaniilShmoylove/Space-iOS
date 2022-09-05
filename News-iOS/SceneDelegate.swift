@@ -26,26 +26,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             //MARK: - FeedViewController
             
             let feedViewController = FeedViewController()
-            feedViewController.title = "Your feed"
+            feedViewController.title = "feed_navigation_title".localized()
             let feedNavigationController = UINavigationController(rootViewController: feedViewController)
-            feedNavigationController.tabBarItem.selectedImage = UIImage(systemName: "house.fill")
-            feedNavigationController.tabBarItem.image = UIImage(systemName: "house")
+            feedNavigationController.tabBarItem.selectedImage = .Icons.feedFill
+            feedNavigationController.tabBarItem.image = .Icons.feed
             
             //MARK: - SavedDataViewController
             
             let savedDataViewController = SavedDataViewController()
-            savedDataViewController.title = "Favorite"
+            savedDataViewController.title = "favorite_navigation_title".localized()
             let savedDataNavigationController = UINavigationController(rootViewController: savedDataViewController)
-            savedDataNavigationController.tabBarItem.image = UIImage(systemName: "diamond")
-            savedDataNavigationController.tabBarItem.selectedImage = UIImage(systemName: "diamond.fill")
+            savedDataNavigationController.tabBarItem.image = .Icons.favorite
+            savedDataNavigationController.tabBarItem.selectedImage = .Icons.favoriteFill
             
             //MARK: -
             
             let otherVC = UIViewController()
-            otherVC.title = "Options"
+            otherVC.title = "options_navigation_title".localized()
             let navVC = UINavigationController(rootViewController: otherVC)
-            navVC.tabBarItem.image = UIImage(systemName: "person")
-            navVC.tabBarItem.selectedImage = UIImage(systemName: "person.fill")
+            navVC.tabBarItem.image = .Icons.options
+            navVC.tabBarItem.selectedImage = .Icons.optionsFill
             
             //MARK: - UITabBarController
             

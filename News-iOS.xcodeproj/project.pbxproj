@@ -56,6 +56,9 @@
 		A5A3F78B28AEB20D0056D4B7 /* FeedCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A3F78A28AEB20D0056D4B7 /* FeedCellModel.swift */; };
 		A5A3F79328B0DFCE0056D4B7 /* DetailPageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A3F79228B0DFCE0056D4B7 /* DetailPageDataSource.swift */; };
 		A5A3F79528B106690056D4B7 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A3F79428B106690056D4B7 /* FeedViewModel.swift */; };
+		A5B2627B28C6870B002A754A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5B2627D28C6870B002A754A /* Localizable.strings */; };
+		A5B2627F28C68A7F002A754A /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B2627E28C68A7F002A754A /* Localized.swift */; };
+		A5B2628128C68B27002A754A /* AppIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B2628028C68B27002A754A /* AppIcons.swift */; };
 		A5EF4AE828B9381C007148FF /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A5EF4AE728B9381C007148FF /* GoogleSignIn */; };
 		A5EF4AEA28B9381C007148FF /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5EF4AE928B9381C007148FF /* GoogleSignInSwift */; };
 		A5EF4AED28B93955007148FF /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF4AEC28B93954007148FF /* AuthenticationService.swift */; };
@@ -112,6 +115,9 @@
 		A5A3F78A28AEB20D0056D4B7 /* FeedCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCellModel.swift; sourceTree = "<group>"; };
 		A5A3F79228B0DFCE0056D4B7 /* DetailPageDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPageDataSource.swift; sourceTree = "<group>"; };
 		A5A3F79428B106690056D4B7 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		A5B2627C28C6870B002A754A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		A5B2627E28C68A7F002A754A /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
+		A5B2628028C68B27002A754A /* AppIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIcons.swift; sourceTree = "<group>"; };
 		A5EF4AEC28B93954007148FF /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		A5EF4AEE28B93C09007148FF /* AuthenticationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationInteractor.swift; sourceTree = "<group>"; };
 		A5F10FFF28B2989000C8EAA4 /* PlanetaryLargeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetaryLargeTableViewCell.swift; sourceTree = "<group>"; };
@@ -171,6 +177,8 @@
 				A5458F092892EE87004ECF26 /* Assets.xcassets */,
 				A5458F0B2892EE87004ECF26 /* LaunchScreen.storyboard */,
 				A581D8022895A23700DBB651 /* AppConstants.swift */,
+				A5B2627D28C6870B002A754A /* Localizable.strings */,
+				A5B2628028C68B27002A754A /* AppIcons.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -180,6 +188,7 @@
 			children = (
 				A530D8DF289D81D700D0A2B4 /* ViewControllerSizes.swift */,
 				A530D8E128A1A0F700D0A2B4 /* StatusBarView.swift */,
+				A5B2627E28C68A7F002A754A /* Localized.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -445,6 +454,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5458F0D2892EE87004ECF26 /* LaunchScreen.storyboard in Resources */,
+				A5B2627B28C6870B002A754A /* Localizable.strings in Resources */,
 				A5458F0A2892EE87004ECF26 /* Assets.xcassets in Resources */,
 				A563B39928B5161600E549E4 /* GoogleService-Info.plist in Resources */,
 			);
@@ -479,6 +489,7 @@
 				A530D8E228A1A0F700D0A2B4 /* StatusBarView.swift in Sources */,
 				A5A2184A28C4DAC000434B8F /* HapticService.swift in Sources */,
 				A5A3F76E28A7EB340056D4B7 /* DetailPageSection.swift in Sources */,
+				A5B2628128C68B27002A754A /* AppIcons.swift in Sources */,
 				A5F1100C28B3BF7400C8EAA4 /* SavedDataPresenter.swift in Sources */,
 				A5458F192893084F004ECF26 /* PlanetaryDefaultTableViewCell.swift in Sources */,
 				A581D8032895A23700DBB651 /* AppConstants.swift in Sources */,
@@ -503,6 +514,7 @@
 				A530D8E428A1AA5900D0A2B4 /* SummaryTableViewCell.swift in Sources */,
 				A5A3F77628A965F00056D4B7 /* FeedInteractor.swift in Sources */,
 				A50C1DEC2899B4BD007E8656 /* AppResolver.swift in Sources */,
+				A5B2627F28C68A7F002A754A /* Localized.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +527,14 @@
 				A5458F0C2892EE87004ECF26 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		A5B2627D28C6870B002A754A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5B2627C28C6870B002A754A /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

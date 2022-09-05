@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  News-iOS
+
+  Created by Daniil Shmoylove on 05.09.2022.
+  
+*/
+
+//MARK: - Navigation title
+
+"feed_navigation_title" = "Your feed";
+"favorite_navigation_title" = "Favorite";
+"options_navigation_title" = "Options";
