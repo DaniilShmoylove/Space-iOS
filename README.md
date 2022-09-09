@@ -20,5 +20,6 @@ Space-iOS - an application that displays articles about space from the official 
 - [Alamofire](https://github.com/Alamofire/Alamofire)
 - [Resolver](https://github.com/hmlongco/Resolver)
 - [GoogleSignIn](https://github.com/google/GoogleSignIn-iOS.git)
-- Kingfisher
+- [Kingfisher](https://github.com/onevcat/Kingfisher.git)
+- [SnapKit](https://github.com/SnapKit/SnapKit.git)
 - Async/Await 
