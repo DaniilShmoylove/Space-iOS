@@ -23,7 +23,7 @@ final class FeedInteractor {
     
     var presenter: FeedPresenterLogic?
     
-    //MARK: - Nasa data service
+    //MARK: - Space service
     
     @Injected private var spaceService: SpaceService
     

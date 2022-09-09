@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 import Kingfisher
 
 class PlanetaryDefaultTableViewCell: UITableViewCell {
@@ -62,11 +63,9 @@ extension PlanetaryDefaultTableViewCell {
         
         let stackView = UIStackView(arrangedSubviews: [self.subtitle, self.title])
         self.addSubview(stackView)
-        stackView.distribution = .fill
-        stackView.spacing = 6
-        stackView.axis = .vertical
-        stackView.alignment = .top
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution  = .fill
+        stackView.axis          = .vertical
+        stackView.spacing = 4
         
         //MARK: - Subtitle label
         
@@ -77,7 +76,6 @@ extension PlanetaryDefaultTableViewCell {
         
         //MARK: - Title label
         
-        self.title.numberOfLines    = 0
         self.title.textColor        = .systemGray
         self.title.font             = .systemFont(ofSize: 12, weight: .medium)
         self.title.textAlignment    = .left
@@ -89,46 +87,19 @@ extension PlanetaryDefaultTableViewCell {
         self.sourceImage.clipsToBounds                              = true
         self.sourceImage.backgroundColor                            = .systemGray4
         self.sourceImage.contentMode = .scaleAspectFill
-        self.sourceImage.translatesAutoresizingMaskIntoConstraints  = false
-        self.sourceImage
-            .centerYAnchor
-            .constraint(equalTo: self.centerYAnchor)
-            .isActive = true
-        self.sourceImage
-            .leadingAnchor
-            .constraint(equalTo: self.leadingAnchor, constant: AppConstants.UI.padding)
-            .isActive = true
-        self.heightAnchor
-            .constraint(equalToConstant: 104)
-            .isActive = true
-        self.sourceImage
-            .widthAnchor
-            .constraint(equalTo: self.sourceImage.heightAnchor)
-            .isActive = true
-        self.sourceImage
-            .topAnchor
-            .constraint(equalTo: self.topAnchor, constant: AppConstants.UI.lowPadding)
-            .isActive = true
-        self.sourceImage
-            .bottomAnchor
-            .constraint(equalTo: self.bottomAnchor, constant: -AppConstants.UI.lowPadding)
-            .isActive = true
+        self.sourceImage.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview().inset(AppConstants.UI.padding)
+            make.size.equalTo(88)
+            make.verticalEdges.equalToSuperview().inset(AppConstants.UI.lowPadding)
+        }
         
-        stackView
-            .trailingAnchor
-            .constraint(equalTo: self.trailingAnchor, constant: -AppConstants.UI.padding)
-            .isActive = true
-        stackView
-            .leadingAnchor
-            .constraint(equalTo: self.sourceImage.trailingAnchor, constant: AppConstants.UI.padding)
-            .isActive = true
-        stackView
-            .topAnchor
-            .constraint(equalTo: self.sourceImage.topAnchor)
-            .isActive = true
-        stackView
-            .bottomAnchor
-            .constraint(equalTo: self.sourceImage.bottomAnchor)
-            .isActive = true
+        //MARK: - StackView
+        
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(self.sourceImage)
+            make.right.equalToSuperview().inset(AppConstants.UI.padding)
+            make.left.equalTo(self.sourceImage.snp.right).inset(-AppConstants.UI.padding)
+        }
     }
 }

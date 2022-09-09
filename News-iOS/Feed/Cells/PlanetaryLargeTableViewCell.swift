@@ -7,19 +7,20 @@
 
 import UIKit
 import Kingfisher
+import SnapKit
 
 final class PlanetaryLargeTableViewCell: UITableViewCell {
     
     //MARK: - Identifier
     
-    static let id: String   = "PlanetaryLargeTableViewCell.cell"
+    static let id: String = "PlanetaryLargeTableViewCell.cell"
     
     //MARK: - Views
     
-    private let title       = UILabel()
-    private let explanation = UILabel()
-    private let optionButton = UIButton()
-    private var sourceImage = UIImageView()
+    private let title           = UILabel()
+    private let explanation     = UILabel()
+    private let optionButton    = UIButton()
+    private var sourceImage     = UIImageView()
     
     //MARK: - Init
     
@@ -97,53 +98,28 @@ extension PlanetaryLargeTableViewCell: PlanetaryTableViewCell {
         //MARK: - Source image label
         
         self.addSubview(self.sourceImage)
-        self.sourceImage.clipsToBounds                              = true
-        self.sourceImage.layer.cornerRadius = AppConstants.UI.cornerRadius
-        self.sourceImage.isUserInteractionEnabled = true
-        self.sourceImage.backgroundColor                            = .systemGray4
-        self.sourceImage.contentMode = .scaleAspectFill
-        self.sourceImage.translatesAutoresizingMaskIntoConstraints  = false
-        self.sourceImage
-            .topAnchor
-            .constraint(equalTo: self.topAnchor, constant: AppConstants.UI.lowPadding)
-            .isActive = true
-        self.sourceImage
-            .leadingAnchor
-            .constraint(equalTo: self.leadingAnchor, constant: AppConstants.UI.padding)
-            .isActive = true
-        self.sourceImage
-            .trailingAnchor
-            .constraint(equalTo: self.trailingAnchor, constant: -AppConstants.UI.padding)
-            .isActive = true
-        self.sourceImage
-            .heightAnchor
-            .constraint(equalTo: self.sourceImage.widthAnchor, multiplier: 9/16)
-            .isActive = true
+        self.sourceImage.clipsToBounds              = true
+        self.sourceImage.layer.cornerRadius         = AppConstants.UI.cornerRadius
+        self.sourceImage.backgroundColor            = .systemGray4
+        self.sourceImage.contentMode                = .scaleAspectFill
+        self.sourceImage.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(AppConstants.UI.padding)
+            make.horizontalEdges.equalToSuperview().inset(AppConstants.UI.padding)
+            make.height.equalTo(self.sourceImage.snp.width).multipliedBy(AppConstants.UI.multipliedBy)
+        }
         
         //MARK: - StackView
         
         let stackView = UIStackView(arrangedSubviews: [self.title, self.explanation])
         self.addSubview(stackView)
-        stackView.distribution = .fill
-        stackView.axis = .vertical
-        stackView.spacing = 6
-        stackView.alignment = .top
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView
-            .topAnchor
-            .constraint(equalTo: self.sourceImage.bottomAnchor, constant: AppConstants.UI.cellVertical)
-            .isActive = true
-        stackView
-            .leadingAnchor
-            .constraint(equalTo: self.sourceImage.leadingAnchor)
-            .isActive = true
-        stackView
-            .trailingAnchor
-            .constraint(equalTo: self.sourceImage.trailingAnchor)
-            .isActive = true
-        stackView
-            .bottomAnchor
-            .constraint(equalTo: self.bottomAnchor, constant: -AppConstants.UI.lowPadding)
-            .isActive = true
+        stackView.distribution  = .fill
+        stackView.axis          = .vertical
+        stackView.spacing       = 6
+        stackView.alignment     = .top
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(self.sourceImage.snp.bottom).inset(-AppConstants.UI.cellVertical)
+            make.left.right.equalTo(self.sourceImage)
+            make.bottom.equalToSuperview().inset(AppConstants.UI.lowPadding)
+        }
     }
 }

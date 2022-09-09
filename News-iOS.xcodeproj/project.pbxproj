@@ -32,7 +32,6 @@
 		A5458F0A2892EE87004ECF26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5458F092892EE87004ECF26 /* Assets.xcassets */; };
 		A5458F0D2892EE87004ECF26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5458F0B2892EE87004ECF26 /* LaunchScreen.storyboard */; };
 		A5458F192893084F004ECF26 /* PlanetaryDefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5458F182893084F004ECF26 /* PlanetaryDefaultTableViewCell.swift */; };
-		A5458F1D28944488004ECF26 /* FeedHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5458F1C28944488004ECF26 /* FeedHeaderView.swift */; };
 		A563B39928B5161600E549E4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A563B39828B5161600E549E4 /* GoogleService-Info.plist */; };
 		A563B39C28B5171A00E549E4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A563B39B28B5171A00E549E4 /* FirebaseAuth */; };
 		A563B39E28B5171A00E549E4 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = A563B39D28B5171A00E549E4 /* FirebaseAuthCombine-Community */; };
@@ -59,6 +58,7 @@
 		A5B2627B28C6870B002A754A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5B2627D28C6870B002A754A /* Localizable.strings */; };
 		A5B2627F28C68A7F002A754A /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B2627E28C68A7F002A754A /* Localized.swift */; };
 		A5B2628128C68B27002A754A /* AppIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B2628028C68B27002A754A /* AppIcons.swift */; };
+		A5B5A2ED28CA5EA1001CC06B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A5B5A2EC28CA5EA1001CC06B /* SnapKit */; };
 		A5EF4AE828B9381C007148FF /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = A5EF4AE728B9381C007148FF /* GoogleSignIn */; };
 		A5EF4AEA28B9381C007148FF /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A5EF4AE928B9381C007148FF /* GoogleSignInSwift */; };
 		A5EF4AED28B93955007148FF /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5EF4AEC28B93954007148FF /* AuthenticationService.swift */; };
@@ -94,7 +94,6 @@
 		A5458F0C2892EE87004ECF26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5458F0E2892EE87004ECF26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5458F182893084F004ECF26 /* PlanetaryDefaultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetaryDefaultTableViewCell.swift; sourceTree = "<group>"; };
-		A5458F1C28944488004ECF26 /* FeedHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedHeaderView.swift; sourceTree = "<group>"; };
 		A563B39828B5161600E549E4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A563B3A028B518BC00E549E4 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		A56AD18E2895E780000173CB /* SavedDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedDataViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5A3F76A28A544B30056D4B7 /* Kingfisher in Frameworks */,
+				A5B5A2ED28CA5EA1001CC06B /* SnapKit in Frameworks */,
 				A50C1DEA2899B492007E8656 /* Resolver in Frameworks */,
 				A5EF4AEA28B9381C007148FF /* GoogleSignInSwift in Frameworks */,
 				A538677628970940007A5858 /* Alamofire in Frameworks */,
@@ -198,7 +198,6 @@
 			children = (
 				A53867692896E01A007A5858 /* NavigationButtonStyle.swift */,
 				A530D8D9289C4EB700D0A2B4 /* ParallaxHeaderView.swift */,
-				A5458F1C28944488004ECF26 /* FeedHeaderView.swift */,
 				A518863D28B170F40053536C /* DismissButtonView.swift */,
 				A50D833828BF809600798B72 /* CustomBarButtonItem.swift */,
 			);
@@ -403,6 +402,7 @@
 				A563B39D28B5171A00E549E4 /* FirebaseAuthCombine-Community */,
 				A5EF4AE728B9381C007148FF /* GoogleSignIn */,
 				A5EF4AE928B9381C007148FF /* GoogleSignInSwift */,
+				A5B5A2EC28CA5EA1001CC06B /* SnapKit */,
 			);
 			productName = "News-iOS";
 			productReference = A5458EFA2892EE85004ECF26 /* News-iOS.app */;
@@ -438,6 +438,7 @@
 				A5A3F76828A544B30056D4B7 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				A563B39A28B5171A00E549E4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A5EF4AE628B9381C007148FF /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				A5B5A2EB28CA5EA1001CC06B /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = A5458EFB2892EE85004ECF26 /* Products */;
 			projectDirPath = "";
@@ -478,7 +479,6 @@
 				A530D8E828A3C07100D0A2B4 /* DetailPageBarTableViewCell.swift in Sources */,
 				A50D834328C145E400798B72 /* PlanetaryTableViewCellProtocol.swift in Sources */,
 				A530D8D8289C2BC500D0A2B4 /* SpaceiOS.xcdatamodeld in Sources */,
-				A5458F1D28944488004ECF26 /* FeedHeaderView.swift in Sources */,
 				A5EF4AEF28B93C09007148FF /* AuthenticationInteractor.swift in Sources */,
 				A5A3F77D28AAB7EF0056D4B7 /* DetailPageRouter.swift in Sources */,
 				A5A3F77328A9649D0056D4B7 /* FeedPresenter.swift in Sources */,
@@ -768,6 +768,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		A5B5A2EB28CA5EA1001CC06B /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		A5EF4AE628B9381C007148FF /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
@@ -803,6 +811,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A5A3F76828A544B30056D4B7 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		A5B5A2EC28CA5EA1001CC06B /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5B5A2EB28CA5EA1001CC06B /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 		A5EF4AE728B9381C007148FF /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;

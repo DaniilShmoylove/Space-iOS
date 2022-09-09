@@ -11,3 +11,9 @@
 "feed_navigation_title" = "Your feed";
 "favorite_navigation_title" = "Favorite";
 "options_navigation_title" = "Options";
+
+//MARK: - Authentication
+
+"auth_button_title" = "Continue with Google";
+"auth_privacy_title" = "You agree to Privacy and Terms.";
+"auth_welcome_title" = "let's sign you in. Welcome back. You've been missed!";

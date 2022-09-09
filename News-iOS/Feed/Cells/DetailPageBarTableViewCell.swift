@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class DetailPageBarTableViewCell: UITableViewCell {
     
@@ -31,24 +32,10 @@ class DetailPageBarTableViewCell: UITableViewCell {
     private func configurationDetailPageBar() {
         self.addSubview(self.detailPageBarLabel)
         
-        self.detailPageBarLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.detailPageBarLabel
-            .leadingAnchor
-            .constraint(equalTo: self.leadingAnchor, constant: AppConstants.UI.padding)
-            .isActive = true
-        self.detailPageBarLabel
-            .trailingAnchor
-            .constraint(equalTo: self.trailingAnchor, constant: -AppConstants.UI.padding)
-            .isActive = true
-        self.detailPageBarLabel
-            .topAnchor
-            .constraint(equalTo: self.topAnchor, constant: AppConstants.UI.vertical)
-            .isActive = true
-        self.detailPageBarLabel
-            .bottomAnchor
-            .constraint(equalTo: self.bottomAnchor, constant: 0)
-            .isActive = true
-        
+        self.detailPageBarLabel.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview().inset(AppConstants.UI.padding)
+            make.verticalEdges.equalToSuperview().inset(AppConstants.UI.verticalDefault)
+        }
     }
     
     func configure(
