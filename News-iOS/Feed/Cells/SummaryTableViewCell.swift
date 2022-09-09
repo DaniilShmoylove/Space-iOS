@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class SummaryTableViewCell: UITableViewCell {
     
@@ -35,23 +36,10 @@ class SummaryTableViewCell: UITableViewCell {
     private func configurationSummaryViewCell() {
         self.addSubview(self.summaryView)
         
-        self.summaryView.translatesAutoresizingMaskIntoConstraints = false
-        self.summaryView
-            .leadingAnchor
-            .constraint(equalTo: self.leadingAnchor, constant: AppConstants.UI.padding)
-            .isActive = true
-        self.summaryView
-            .trailingAnchor
-            .constraint(equalTo: self.trailingAnchor, constant: -AppConstants.UI.padding)
-            .isActive = true
-        self.summaryView
-            .topAnchor
-            .constraint(equalTo: self.topAnchor, constant: 6)
-            .isActive = true
-        self.summaryView
-            .bottomAnchor
-            .constraint(equalTo: self.bottomAnchor)
-            .isActive = true
+        self.summaryView.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview().inset(AppConstants.UI.padding)
+            make.verticalEdges.equalToSuperview().inset(AppConstants.UI.verticalDefault)
+        }
     }
     
     func configure(

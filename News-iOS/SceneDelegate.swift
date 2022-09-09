@@ -22,36 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         self.window?.windowScene = windowScene
         if let _ = Auth.auth().currentUser {
-            
-            //MARK: - FeedViewController
-            
-            let feedViewController = FeedViewController()
-            feedViewController.title = "feed_navigation_title".localized()
-            let feedNavigationController = UINavigationController(rootViewController: feedViewController)
-            feedNavigationController.tabBarItem.selectedImage = .Icons.feedFill
-            feedNavigationController.tabBarItem.image = .Icons.feed
-            
-            //MARK: - SavedDataViewController
-            
-            let savedDataViewController = SavedDataViewController()
-            savedDataViewController.title = "favorite_navigation_title".localized()
-            let savedDataNavigationController = UINavigationController(rootViewController: savedDataViewController)
-            savedDataNavigationController.tabBarItem.image = .Icons.favorite
-            savedDataNavigationController.tabBarItem.selectedImage = .Icons.favoriteFill
-            
-            //MARK: -
-            
-            let otherVC = UIViewController()
-            otherVC.title = "options_navigation_title".localized()
-            let navVC = UINavigationController(rootViewController: otherVC)
-            navVC.tabBarItem.image = .Icons.options
-            navVC.tabBarItem.selectedImage = .Icons.optionsFill
-            
-            //MARK: - UITabBarController
-            
-            let tabBarController = UITabBarController()
-            tabBarController.setViewControllers([feedNavigationController, savedDataNavigationController, navVC], animated: false)
-            self.window?.rootViewController = tabBarController
+            self.window?.rootViewController = self.createTabBarController()
         } else {
             let viewController = AuthenticationViewController()
             let navigationController = UINavigationController(rootViewController: viewController)
@@ -95,11 +66,42 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //MARK: - Change root vc
 
 extension SceneDelegate {
+    private func createTabBarController() -> UIViewController {
+        
+        //MARK: - FeedViewController
+        
+        let feedViewController = FeedViewController()
+        feedViewController.title = "feed_navigation_title".localized()
+        let feedNavigationController = UINavigationController(rootViewController: feedViewController)
+        feedNavigationController.tabBarItem.selectedImage = .Icons.feedFill
+        feedNavigationController.tabBarItem.image = .Icons.feed
+        
+        //MARK: - SavedDataViewController
+        
+        let savedDataViewController = SavedDataViewController()
+        savedDataViewController.title = "favorite_navigation_title".localized()
+        let savedDataNavigationController = UINavigationController(rootViewController: savedDataViewController)
+        savedDataNavigationController.tabBarItem.image = .Icons.favorite
+        savedDataNavigationController.tabBarItem.selectedImage = .Icons.favoriteFill
+        
+        //MARK: - Options
+        
+        let otherVC = UIViewController()
+        otherVC.title = "options_navigation_title".localized()
+        let navVC = UINavigationController(rootViewController: otherVC)
+        navVC.tabBarItem.image = .Icons.options
+        navVC.tabBarItem.selectedImage = .Icons.optionsFill
+        
+        //MARK: - UITabBarController
+        
+        let tabBarController = UITabBarController()
+        tabBarController.setViewControllers([feedNavigationController, savedDataNavigationController, navVC], animated: false)
+        return tabBarController
+    }
+    
     func openRecipientsController() {
-        let viewController = FeedViewController()
-        let navigationController = UINavigationController(rootViewController: viewController)
         guard let window = self.window else { return }
-        window.rootViewController = navigationController
+        window.rootViewController = self.createTabBarController()
         UIView.transition(
             with: window,
             duration: AppConstants.Core.standartDuration,

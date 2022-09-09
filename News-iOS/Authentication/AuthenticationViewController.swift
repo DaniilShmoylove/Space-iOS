@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class AuthenticationViewController: UIViewController {
     
@@ -16,10 +17,10 @@ final class AuthenticationViewController: UIViewController {
     //MARK: - Sign in button
     
     private lazy var signInButtonView: UIButton = {
-        let button = UIButton()
-        button.setTitle("Continue with Google", for: .normal)
+        let button = UIButton(type: .system)
+        button.setTitle("auth_button_title".localized(), for: .normal)
+        button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
-        button.titleLabel?.textColor = .white
         button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 24
         button.addTarget(self, action: #selector(self.signInButtonAction), for: .touchUpInside)
@@ -44,7 +45,7 @@ final class AuthenticationViewController: UIViewController {
     
     private lazy var privacyPolicyLabel: UILabel = {
         let label = UILabel()
-        let text = "You agree to Privacy and Terms."
+        let text = "auth_privacy_title".localized()
         label.text = text
         label.font = .systemFont(ofSize: 14, weight: .medium)
         label.textColor = .systemGray
@@ -56,7 +57,7 @@ final class AuthenticationViewController: UIViewController {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "let's sign you in. Welcome back. You've been missed!"
+        label.text = "auth_welcome_title".localized()
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 36, weight: .black)
         label.textAlignment = .left
@@ -71,7 +72,7 @@ final class AuthenticationViewController: UIViewController {
         self.view.addSubview(self.signInButtonView)
         self.view.addSubview(self.privacyPolicyLabel)
         self.view.addSubview(self.titleLabel)
-
+        
     }
     
     //MARK: - Layout
@@ -81,55 +82,25 @@ final class AuthenticationViewController: UIViewController {
         
         /* Sign in button layout */
         
-        self.signInButtonView.translatesAutoresizingMaskIntoConstraints = false
-        self.signInButtonView
-            .bottomAnchor
-            .constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
-            .isActive = true
-        self.signInButtonView
-            .leadingAnchor
-            .constraint(equalTo: self.view.leadingAnchor, constant: AppConstants.UI.horizontal)
-            .isActive = true
-        self.signInButtonView
-            .trailingAnchor
-            .constraint(equalTo: self.view.trailingAnchor, constant: -AppConstants.UI.horizontal)
-            .isActive = true
-        self.signInButtonView
-            .heightAnchor
-            .constraint(equalToConstant: 64)
-            .isActive = true
+        self.signInButtonView.snp.makeConstraints { make in
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).inset(AppConstants.UI.padding)
+            make.left.right.equalToSuperview().inset(AppConstants.UI.horizontal)
+            make.height.equalTo(64)
+        }
         
         /* Privacy policy label layout */
         
-        self.privacyPolicyLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.privacyPolicyLabel
-            .bottomAnchor
-            .constraint(equalTo: self.signInButtonView.topAnchor, constant: -24)
-            .isActive = true
-        self.privacyPolicyLabel
-            .leadingAnchor
-            .constraint(equalTo: self.signInButtonView.leadingAnchor)
-            .isActive = true
-        self.privacyPolicyLabel
-            .trailingAnchor
-            .constraint(equalTo: self.signInButtonView.trailingAnchor)
-            .isActive = true
+        self.privacyPolicyLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(self.signInButtonView.snp.top).inset(-AppConstants.UI.padding)
+            make.horizontalEdges.equalTo(self.signInButtonView)
+        }
         
         /* Title label layout */
         
-        self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.titleLabel
-            .topAnchor
-            .constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 16)
-            .isActive = true
-        self.titleLabel
-            .leadingAnchor
-            .constraint(equalTo: self.signInButtonView.leadingAnchor)
-            .isActive = true
-        self.titleLabel
-            .trailingAnchor
-            .constraint(equalTo: self.signInButtonView.trailingAnchor)
-            .isActive = true
+        self.titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide).inset(AppConstants.UI.padding)
+            make.horizontalEdges.equalTo(self.signInButtonView)
+        }
     }
 }
 

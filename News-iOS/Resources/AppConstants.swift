@@ -26,6 +26,7 @@ enum AppConstants {
         static let materialButton: CGRect = CGRect(x: 0, y: 0, width: 36, height: 36)
         static let cornerRadius: CGFloat = 16
         static let sheetCornerRadius: CGFloat = 24
+        static let multipliedBy: CGFloat = 0.5625
     }
     
     //MARK: - Core
