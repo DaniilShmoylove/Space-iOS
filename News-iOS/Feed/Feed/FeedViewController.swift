@@ -7,7 +7,6 @@
 
 import UIKit
 import Alamofire
-import Resolver
 
 //MARK: - FeedViewController protocol
 
@@ -23,8 +22,6 @@ final class FeedViewController: UITableViewController {
     //MARK: - Interactor
     
     private var interactor: FeedInteractorLogic?
-    
-    @Injected private var authenticationService: AuthenticationService
     
     //MARK: - Navigation Router
     
